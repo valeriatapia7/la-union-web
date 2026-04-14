@@ -1,98 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La Union Dance Company</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Union Dance Company</title>
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom, orange, yellow);
-  color: #222;
-}
+  <style>
+    :root {
+      --black: #000000;
+      --dark: #111111;
+      --orange: #ff7a00;
+      --yellow: #ffd000;
+      --white: #ffffff;
+      --text: #222222;
+    }
 
-header {
-  text-align: center;
-  padding: 60px 20px;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-nav {
-  text-align: center;
-  padding: 15px;
-  background: rgba(0,0,0,0.1);
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, var(--orange), var(--yellow));
+      color: var(--text);
+    }
 
-nav a {
-  margin: 0 15px;
-  text-decoration: none;
-  font-weight: bold;
-  color: black;
-}
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--black);
+      padding: 14px 24px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    }
 
-section {
-  padding: 50px 20px;
-  text-align: center;
-}
+    .topbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
 
-.card {
-  background: white;
-  padding: 20px;
-  margin: 15px;
-  border-radius: 10px;
-  display: inline-block;
-  width: 250px;
-}
+    .logo img {
+      height: 58px;
+      width: auto;
+      display: block;
+    }
 
-footer {
-  text-align: center;
-  padding: 20px;
-  background: rgba(0,0,0,0.2);
-}
-</style>
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 22px;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--yellow);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 80px 20px 70px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2.2rem, 5vw, 4.2rem);
+      line-height: 1.05;
+      color: #111;
+    }
+
+    .hero p {
+      margin: 0 auto;
+      font-size: 1.15rem;
+      max-width: 700px;
+      line-height: 1.6;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.12);
+      font-weight: 700;
+      color: #111;
+    }
+
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin: 0 0 26px;
+      color: #111;
+    }
+
+    .cards {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.92);
+      padding: 24px;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      text-align: center;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.3rem;
+      color: #111;
+    }
+
+    .card p {
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .schedule, .contact-box {
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.92);
+      padding: 28px;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .schedule p,
+    .contact-box p {
+      margin: 8px 0;
+      font-size: 1.05rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 22px 20px;
+      background: rgba(0, 0, 0, 0.22);
+      color: #111;
+      font-weight: 700;
+    }
+
+    @media (max-width: 700px) {
+      .topbar-inner {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav {
+        justify-content: center;
+        gap: 14px;
+      }
+
+      .logo img {
+        height: 52px;
+      }
+
+      .hero {
+        padding-top: 55px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <img src="logo.png" width="120">
-  <h1>La Union Dance Company</h1>
-  <p>Bachata & Salsa Classes in USA</p>
-</header>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="logo">
+        <img src="logo.png" alt="La Union Dance Company Logo">
+      </div>
 
-<nav>
-  <a href="#clases">Clases</a>
-  <a href="#horarios">Horarios</a>
-  <a href="#precios">Precios</a>
-  <a href="#contacto">Contacto</a>
-</nav>
+      <nav>
+        <a href="#inicio">Home</a>
+        <a href="#clases">Clases</a>
+        <a href="#horarios">Horarios</a>
+        <a href="#precios">Precios</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
 
-<section id="clases">
-  <h2>Clases</h2>
-  <div class="card">Bachata</div>
-  <div class="card">Salsa</div>
-</section>
+  <section id="inicio" class="hero">
+    <div class="hero-badge">Bachata & Salsa Classes in USA</div>
+    <h1>La Union Dance Company</h1>
+    <p>
+      Aprende Bachata y Salsa en un ambiente profesional, divertido y lleno de energía.
+      Clases para principiantes, intermedios y avanzados.
+    </p>
+  </section>
 
-<section id="horarios">
-  <h2>Horarios</h2>
-  <p>Lunes a Viernes: 6pm - 10pm</p>
-</section>
+  <section id="clases">
+    <h2>Clases</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Bachata</h3>
+        <p>Clases para dominar timing, musicalidad, conexión y estilo.</p>
+      </div>
+      <div class="card">
+        <h3>Salsa</h3>
+        <p>Aprende pasos básicos, giros, técnica y confianza en la pista.</p>
+      </div>
+    </div>
+  </section>
 
-<section id="precios">
-  <h2>Precios</h2>
-  <div class="card">$15 Clase</div>
-  <div class="card">$100 Mensual</div>
-</section>
+  <section id="horarios">
+    <h2>Horarios</h2>
+    <div class="schedule">
+      <p><strong>Monday - Friday:</strong> 6:00 PM - 10:00 PM</p>
+      <p><strong>Saturday:</strong> 10:00 AM - 2:00 PM</p>
+      <p><strong>Sunday:</strong> Closed</p>
+    </div>
+  </section>
 
-<section id="contacto">
-  <h2>Contacto</h2>
-  <p>WhatsApp: +1 XXX XXX XXXX</p>
-</section>
+  <section id="precios">
+    <h2>Precios</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Clase Individual</h3>
+        <p>$15 por clase</p>
+      </div>
+      <div class="card">
+        <h3>Mensual</h3>
+        <p>$100 por mes</p>
+      </div>
+      <div class="card">
+        <h3>Parejas</h3>
+        <p>$180 por mes</p>
+      </div>
+    </div>
+  </section>
 
-<footer>
-  <p>© 2026 La Union Dance Company</p>
-</footer>
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <div class="contact-box">
+      <p><strong>WhatsApp:</strong> +1 XXX XXX XXXX</p>
+      <p><strong>Email:</strong> info@launiondancecompany.com</p>
+      <p><strong>Instagram:</strong> @launiondancecompany</p>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 La Union Dance Company
+  </footer>
 
 </body>
 </html>
